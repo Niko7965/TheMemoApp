@@ -25,6 +25,7 @@ public class Controller {
         if(!saveButton.isDisabled()){
             saveButton.setDisable(true);
         }
+        MinimSound.record();
     }
 
     @FXML
@@ -43,6 +44,7 @@ public class Controller {
         stopButton.setDisable(!stopButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
+        MinimSound.stoprecord();
     }
 
 
