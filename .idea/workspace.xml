@@ -61,9 +61,9 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="MemoApp" />
+      <module name="TheMemoApp" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
