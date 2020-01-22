@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95e2b5ac-f837-47da-ba85-64ab334a482a" name="Default Changelist" comment="" />
     <list default="true" id="95e2b5ac-f837-47da-ba85-64ab334a482a" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Minim.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
@@ -100,4 +99,4 @@
       </map>
     </option>
   </component>
-</project></project>
+</project>
