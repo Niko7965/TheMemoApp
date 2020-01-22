@@ -8,9 +8,20 @@ import javafx.stage.Stage;
 import processing.core.PApplet;
 import processing.sound.*;
 
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
+import java.util.concurrent.TimeUnit;
 
 
 public class Main extends PApplet {
+
+
+    public static Main main;
 
     public static void main(String[] args) {
         // write your code here
@@ -19,19 +30,25 @@ public class Main extends PApplet {
         System.out.println("HelloWorld");
         new Screen().start(args);
 
+
     }
     public void settings(){
         //Put stuff like size() here
         size(1500,800);
-
+        main=this;
 
     }
     public void setup(){
         //Ordinary setup
-        Sound s;
-        SinOsc sin = new SinOsc(this);
-        sin.play();
-        sin.freq(440);
+        MinimSound sc = new MinimSound();
+        sc.minimSetup();
+        sc.record();
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sc.stoprecord();
         getSurface().setVisible(false);
     }
     public void draw(){
