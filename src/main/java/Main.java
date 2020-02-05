@@ -39,6 +39,7 @@ public class Main extends PApplet {
 
     }
     public void setup(){
+        getSurface().setVisible(false);
         //Ordinary setup
         MinimSound sc = new MinimSound();
         sc.minimSetup();
@@ -49,7 +50,7 @@ public class Main extends PApplet {
             e.printStackTrace();
         }
         sc.stoprecord();
-        getSurface().setVisible(false);
+
     }
     public void draw(){
         rect(0, 0, 20, 20);
