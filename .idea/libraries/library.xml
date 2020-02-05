@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Sound">
+  <library name="library">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/Libraries/sound/library" />
     </CLASSES>
