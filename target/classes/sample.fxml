@@ -62,7 +62,7 @@
                      <children>
                         <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
-                            <Button fx:id="recordButton" accessibleRole="NODE" mnemonicParsing="false" onMouseClicked="#recordSound" text="Record" />
+                            <Button fx:id="recordButton" accessibleRole="NODE" mnemonicParsing="false" onMouseClicked="#recordSound" text="Records" />
                               <Button fx:id="stopButton" disable="true" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#stopRecordingSound" text="Stop" />
                               <Button fx:id="saveButton" disable="true" layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#saveRecording" text="Save" />
                           </items>
