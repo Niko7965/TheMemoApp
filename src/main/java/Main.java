@@ -29,7 +29,7 @@ public class Main extends PApplet {
         PApplet.main("Main");
         System.out.println("HelloWorld");
         new Screen().start(args);
-
+       // new PopUpScreen().start(args);
 
     }
     public void settings(){
