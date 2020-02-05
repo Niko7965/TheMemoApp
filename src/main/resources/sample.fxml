@@ -27,7 +27,7 @@
                <children>
                   <Pane prefHeight="407.0" prefWidth="639.0">
                      <children>
-                        <Circle fill="#22f5d900" layoutX="320.0" layoutY="204.0" onMouseClicked="#Rotate" radius="100.0" strokeLineCap="BUTT" strokeType="INSIDE" strokeWidth="10.0">
+                        <Circle fill="#22f5d900" layoutX="320.0" layoutY="204.0" onMouseClicked="#rotate" radius="100.0" strokeLineCap="BUTT" strokeType="INSIDE" strokeWidth="10.0">
                            <stroke>
                               <LinearGradient endX="1.0" endY="1.0">
                                  <stops>
