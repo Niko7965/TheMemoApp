@@ -42,6 +42,9 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Libraries/sound/library" />
+
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Libraries/minim/library" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />

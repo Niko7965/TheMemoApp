@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 public class MinimSound {
     AudioInput in;
-    AudioRecorder recorder;
+    private static AudioRecorder recorder;
     boolean recorded;
     //Playback
     AudioOutput out;
@@ -36,14 +36,14 @@ public class MinimSound {
     }
 
 
-    void record(){
+    public static void record(){
         if(!recorder.isRecording()){
             recorder.beginRecord();
             System.out.println("Recording started");
         }
     }
 
-    void stoprecord(){
+    public static void stoprecord(){
         if(recorder.isRecording()){
             recorder.endRecord();
             System.out.println("Recording stopped");
