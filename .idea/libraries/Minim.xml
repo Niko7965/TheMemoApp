@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="library1">
+  <library name="Minim">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/Libraries/minim/library" />
     </CLASSES>
