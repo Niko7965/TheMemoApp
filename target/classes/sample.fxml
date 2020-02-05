@@ -45,7 +45,7 @@
                                     </GridPane>
                                  </children>
                               </AnchorPane>
-                            <AnchorPane maxWidth="250.0" minWidth="150.0" prefWidth="160.0">
+                            <AnchorPane maxWidth="280.0" minWidth="200.0" prefWidth="240.0">
                                  <children>
                                     <TitledPane animated="false" layoutX="-24.0" layoutY="67.0" text="untitled" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <content>
