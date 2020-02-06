@@ -29,6 +29,7 @@ public class Main extends PApplet {
 
         PApplet.main("Main");
         new Screen().start(args);
+        new PopUpScreen().setupPopUp(args);
 
 
     }

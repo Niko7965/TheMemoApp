@@ -40,7 +40,7 @@
                                         <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: url(&quot;/DestinyWallpaper.jpg&quot;); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: url(&quot;/M2SUNAq.jpg&quot;); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
                                  </children>

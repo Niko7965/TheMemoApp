@@ -21,8 +21,4 @@ public class Screen extends Application {
         launch(args);
     }
 
-
-
-
-
 }
