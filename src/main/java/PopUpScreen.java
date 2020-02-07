@@ -7,7 +7,10 @@ import javafx.stage.Stage;
 import javax.swing.*;
 
 public class PopUpScreen extends Application {
-    private static Stage thisStage;
+    private static Scene popUpScreen;
+    private static Stage PopUpScreen;
+
+
     @Override
     public void start(Stage popUpStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("popUpSample.fxml"));
@@ -23,7 +26,14 @@ public class PopUpScreen extends Application {
 
     public static void showNameInput(boolean showMe){
         if(showMe){/*this.toString().show()*/; } System.out.println("Name input box showing");
-            if(!showMe){ thisStage.hide(); } System.out.println("Name input box hidden");
+            if(!showMe){ PopUpScreen.hide(); } System.out.println("Name input box hidden");
+    }
+
+    public static Scene getScene() {
+        return(popUpScreen);
+    }
+    public static Stage getStage() {
+        return(PopUpScreen);
     }
 
 }
