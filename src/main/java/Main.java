@@ -15,6 +15,7 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 
@@ -43,8 +44,9 @@ public class Main extends PApplet {
     public void setup(){
         getSurface().setVisible(false);
         //Ordinary setup
-        MinimSound sc = new MinimSound();
-        sc.minimSetup();
+        //MinimSound sc = new MinimSound();
+        //sc.minimSetup();
+        /*
         sc.record();
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -52,8 +54,11 @@ public class Main extends PApplet {
             e.printStackTrace();
         }
         sc.stoprecord();
-
+        */
     }
+
+
+
     public void draw(){
         rect(0, 0, 20, 20);
     }

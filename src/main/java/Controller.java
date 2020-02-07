@@ -4,6 +4,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 
 public class Controller {
+    MinimSound sound = new MinimSound();
 
     @FXML
     private Circle circle;
@@ -19,13 +20,16 @@ public class Controller {
 
     @FXML
     void recordSound(MouseEvent event) {
+        sound.minimSetup();
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
-        //recordButton.setText("Pause");
         stopButton.setDisable(!stopButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         //recordButton.setText("Pause");
         if(!saveButton.isDisabled()){
             saveButton.setDisable(true);
         }
+        sound.record();
+        recordButton.setText("Pause");
+
     }
 
     @FXML
@@ -34,8 +38,9 @@ public class Controller {
     }
 
     @FXML
-    void saveRecording(MouseEvent event) throws Exception {
+    void saveRecording(MouseEvent event) {
         saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
+        //recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
 
         // PopUpScreen.showNameInput(true);
 
@@ -49,13 +54,14 @@ public class Controller {
         stopButton.setDisable(!stopButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
-    }
+        sound.stoprecord();
 
-    @FXML
-    void chooseFile(MouseEvent event){
+    //@FXML
+    //void chooseFile(MouseEvent event){
         // play or mark the saved file from the file-menu
-    }
+    //}
 
+    }
 
 
 }
