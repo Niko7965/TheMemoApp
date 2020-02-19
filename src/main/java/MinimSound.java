@@ -14,103 +14,90 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/*MinimSound is a class that is used to handle sound
+  MinimSound uses the "Minim" library from processing
+  MinimSound uses a few Java libraries (io, nio, util) to save sound files on the device */
+
 public class MinimSound {
+    //Recording variables
     String folder;
     AudioInput in;
     AudioRecorder recorder;
     boolean recorded;
-    //Playback
     AudioOutput out;
     FilePlayer player;
     Minim minim;
     List recordings;
-    //Record
 
+    //A function that returns the absolute path from a sketchpath (C:/Users/... from Java/Resources/...
+    //Not currently in use, but was used as developer tool, and might be useful for future development
     public String sketchPath( String fileName ){
         return Main.main.sketchPath(fileName);
     }
 
+    //Creates a new sound input
+    //Not currently in use, but was used as developer tool, and might be useful for future development
     public InputStream createInput(String fileName ){
         return Main.main.createInput(fileName);
     }
+
+    //The setup function for MinimSound
+    //Defines inputs, outputs and directories for the Minim library
     void minimSetup(){
         minim = new Minim(this);
-
         in = minim.getLineIn(Minim.STEREO);
-        recorder = minim.createRecorder(in,"/Recordings/Record1.wav");
+        recorder = minim.createRecorder(in,"/Recordings/Untitled.wav");
         folder = "./Recordings";
         out = minim.getLineOut(Minim.STEREO);
-
     }
+
+    //Changes the output path for the Minim recorder
     void newFile(String path){
         String pathName = "./Recordings/" +path+ ".wav";
         recorder = minim.createRecorder(in,pathName);
     }
 
-
+    //Starts recording if not already recording
     void record(){
-        newFile("Test");
-
         if(!recorder.isRecording()){
             recorder.beginRecord();
             System.out.println("Recording started");
         }
     }
 
+    //Stops the recording if recording
     void stoprecord(){
         if(recorder.isRecording()){
             recorder.endRecord();
             System.out.println("Recording stopped");
         }
-        printDir(folder);
-
-
     }
 
+    //Takes a file path, and return a list of contents of the directory
+    //It is currently not used, but was made for possible future development of the app,
+    //Allowing the user to play previously recorded files
     public List<String> getAllRecordings(){
         List<String> result = null;
         try (Stream<Path> walk = Files.walk(Paths.get(folder))) {
-
             result = walk.filter(Files::isRegularFile)
                     .map(Path::toString).collect(Collectors.toList());
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return result;
     }
 
-    public void printDir(String path){
+    //Prints the contents of a directory
+    //It is currently not used, but was made for possible future development of the app,
+    //Allowing the user to play previously recorded files
+    private void printDir(String path){
         try (Stream<Path> walk = Files.walk(Paths.get(path))) {
-
             List<String> result = walk.filter(Files::isRegularFile)
                     .map(Path::toString).collect(Collectors.toList());
-
             result.forEach(System.out::println);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-        }
-
-
-        /*
-        System.out.println("Files in folder:");
-        String[] pathnames;
-        File f = new File(path);
-        pathnames = f.list();
-        System.out.println(pathnames);
-
-
-        if (pathnames != null) {
-            for (String pathname : pathnames){
-                System.out.println(pathname);
-            }
-        }
-
-
-         */
+    }
 
 }
