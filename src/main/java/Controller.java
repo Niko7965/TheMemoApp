@@ -42,6 +42,11 @@ public class Controller {
         saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         //recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
 
+        // PopUpScreen.showNameInput(true);
+
+        if(recordButton.isDisabled()){
+            recordButton.setDisable(false); //A should always show after file is saved
+        }
     }
 
     @FXML
@@ -50,8 +55,11 @@ public class Controller {
         saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         sound.stoprecord();
-
+    }
+    @FXML
+    void chooseFile(MouseEvent event){
+        // play or mark the saved file from the file-menu
     }
 
-
 }
+

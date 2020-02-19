@@ -24,13 +24,15 @@ public class Main extends PApplet {
 
     public static Main main;
 
+    public static String[] argString;
+
     public static void main(String[] args) {
         // write your code here
 
         PApplet.main("Main");
+        System.out.println("Hello World");
         new Screen().start(args);
         new PopUpScreen().setupPopUp(args);
-
 
     }
     public void settings(){
@@ -60,4 +62,5 @@ public class Main extends PApplet {
     public void draw(){
         rect(0, 0, 20, 20);
     }
+
 }
