@@ -23,6 +23,7 @@ public class MinimSound {
     AudioOutput out;
     FilePlayer player;
     Minim minim;
+    List recordings;
     //Record
 
     public String sketchPath( String fileName ){
@@ -64,6 +65,21 @@ public class MinimSound {
         printDir(folder);
 
 
+    }
+
+    public List<String> getAllRecordings(){
+        List<String> result = null;
+        try (Stream<Path> walk = Files.walk(Paths.get(folder))) {
+
+            result = walk.filter(Files::isRegularFile)
+                    .map(Path::toString).collect(Collectors.toList());
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
     public void printDir(String path){
