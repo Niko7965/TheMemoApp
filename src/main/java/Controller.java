@@ -55,13 +55,11 @@ public class Controller {
         saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         sound.stoprecord();
-
-    //@FXML
-    //void chooseFile(MouseEvent event){
+    }
+    @FXML
+    void chooseFile(MouseEvent event){
         // play or mark the saved file from the file-menu
-    //}
-
     }
 
-
 }
+
