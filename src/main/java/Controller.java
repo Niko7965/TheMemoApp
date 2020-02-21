@@ -7,8 +7,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 
 public class Controller {
+    // object to hold new recording
     private MinimSound sound = new MinimSound();
 
+    ////////////////////////////
+    // All GUI objects in use //
+    ////////////////////////////
     @FXML
     private Circle circle;
 
@@ -33,7 +37,13 @@ public class Controller {
     @FXML
     private TextField dialogTextField;
 
+
+    //////////////////////////////////////////////////////
+    // FUNCTIONS run when interacting with GUI elements //
+    //////////////////////////////////////////////////////
     @FXML
+    // when "Record" button is pressed
+    // record sound and make "stop recording" available
     void recordSound(MouseEvent event) {
         sound.minimSetup();
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
@@ -49,11 +59,25 @@ public class Controller {
     }
 
     @FXML
+    // not used
     void rotate(MouseEvent event) {
 
     }
 
     @FXML
+    // when "Stop" button is pressed
+    // stop recording and make "Record" available again and also make "Save" available
+    void stopRecordingSound(MouseEvent event) {
+        stopButton.setDisable(!stopButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
+        saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
+        recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
+        sound.stoprecord();
+    }
+
+    @FXML
+    // when "Save" button is pressed
+    // save recording and make itself, "Save", unavailable
+    // also initiate the user input dialog to receive file name
     void saveRecording(MouseEvent event) {
         saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         //recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
@@ -69,14 +93,8 @@ public class Controller {
     }
 
     @FXML
-    void stopRecordingSound(MouseEvent event) {
-        stopButton.setDisable(!stopButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
-        saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
-        recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
-        sound.stoprecord();
-    }
-
-    @FXML
+    // when "Save" button in the pop-up dialog is pressed
+    // save the user inputted file name from pop-up dialog
     void saveDialogInput(MouseEvent event){
         if(dialogTextField.getLength() > 0) {
             // Screen.setTempFileName(dialogTextField.getText());
@@ -92,8 +110,16 @@ public class Controller {
     }
 
     @FXML
+    // when clicking on label, but this isn't used yet
     void chooseFile(MouseEvent event){
         // play or mark the saved file from the file-menu
+    }
+
+    @FXML
+    // there should be a way of making new Labels to represent files
+    // method missing. Should be made if drop down file chooser menu should be incorporated
+    void newFIleLabel(MinimSound thisSound) {
+
     }
 
 }
