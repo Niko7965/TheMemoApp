@@ -19,7 +19,7 @@ import java.util.stream.Stream;
   MinimSound uses a few Java libraries (io, nio, util) to save sound files on the device */
 
 public class MinimSound {
-    //Recording variables
+    //Recording variables. Some of these are not currently used, but remain in place for possible future development
     String folder;
     AudioInput in;
     AudioRecorder recorder;
