@@ -4,11 +4,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
+import java.lang.reflect.Field;
 
 
 //
 public class Screen extends Application {
+
+    private static String tempFileName;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -21,4 +24,13 @@ public class Screen extends Application {
         launch(args);
     }
 
+    String getTempFIleName(){
+        return(tempFileName);
+    }
+
+    static void setTempFileName(String inputString){
+        tempFileName = inputString;
+    }
+
 }
+

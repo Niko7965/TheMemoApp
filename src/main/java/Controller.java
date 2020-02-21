@@ -1,10 +1,13 @@
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 
 public class Controller {
-    MinimSound sound = new MinimSound();
+    private MinimSound sound = new MinimSound();
 
     @FXML
     private Circle circle;
@@ -19,6 +22,18 @@ public class Controller {
     private Button saveButton;
 
     @FXML
+    private DialogPane textInputDialog;
+
+    @FXML
+    private Button dialogButton;
+
+    @FXML
+    private Label dialogLabel;
+
+    @FXML
+    private TextField dialogTextField;
+
+    @FXML
     void recordSound(MouseEvent event) {
         sound.minimSetup();
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
@@ -28,8 +43,9 @@ public class Controller {
             saveButton.setDisable(true);
         }
         sound.record();
-        recordButton.setText("Pause");
-
+        /* unused feature where button has two functionalities may be implemented later
+         * recordButton.setText("Pause");
+         */
     }
 
     @FXML
@@ -47,6 +63,9 @@ public class Controller {
         if(recordButton.isDisabled()){
             recordButton.setDisable(false); //A should always show after file is saved
         }
+        // text input for filename
+        textInputDialog.setVisible(true);
+        textInputDialog.setDisable(false);
     }
 
     @FXML
@@ -56,6 +75,22 @@ public class Controller {
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         sound.stoprecord();
     }
+
+    @FXML
+    void saveDialogInput(MouseEvent event){
+        if(dialogTextField.getLength() > 0) {
+            // Screen.setTempFileName(dialogTextField.getText());
+            sound.newFile(dialogTextField.getText());
+            textInputDialog.setVisible(false);
+            textInputDialog.setDisable(true);
+        } else if(dialogTextField.getLength() == 0) {
+            // If no input is detected
+            dialogLabel.setText("You must input file name to save your recording");
+        } else {
+            System.out.println("Fail occurred during request of file name by user input!");
+        }
+    }
+
     @FXML
     void chooseFile(MouseEvent event){
         // play or mark the saved file from the file-menu

@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class MinimSound {
-    String folder;
-    AudioInput in;
-    AudioRecorder recorder;
+    private String folder;
+    private AudioInput in;
+    private AudioRecorder recorder;
     boolean recorded;
     //Playback
-    AudioOutput out;
+    private AudioOutput out;
     FilePlayer player;
-    Minim minim;
+    private Minim minim;
     //Record
 
     public String sketchPath( String fileName ){
@@ -41,8 +41,8 @@ public class MinimSound {
         out = minim.getLineOut(Minim.STEREO);
 
     }
-    void newFile(String path){
-        String pathName = "./Recordings/" +path+ ".wav";
+    public void newFile(String path){
+        String pathName = "./Recordings/" + path + ".wav";
         recorder = minim.createRecorder(in,pathName);
     }
 
@@ -87,14 +87,12 @@ public class MinimSound {
         pathnames = f.list();
         System.out.println(pathnames);
 
-
         if (pathnames != null) {
             for (String pathname : pathnames){
                 System.out.println(pathname);
             }
         }
 
-
-         */
+        */
 
 }
