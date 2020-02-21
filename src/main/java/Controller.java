@@ -115,11 +115,14 @@ public class Controller {
         // play or mark the saved file from the file-menu
     }
 
-    @FXML
-    // there should be a way of making new Labels to represent files
-    // method missing. Should be made if drop down file chooser menu should be incorporated
-    void newFIleLabel(MinimSound thisSound) {
 
+    ////////////////////////////////////
+    // Functions to manipulate Labels //
+    ////////////////////////////////////
+    @FXML
+    void newFIleLabel(MinimSound thisSound) {
+        // there should be a way of making new Labels to represent files
+        // method missing. Should be made if drop down file chooser menu should be incorporated
     }
 
 }
