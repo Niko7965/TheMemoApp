@@ -4,8 +4,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.lang.reflect.Field;
-
 
 //
 public class Screen extends Application {
@@ -18,6 +16,7 @@ public class Screen extends Application {
         primaryStage.setTitle("The Memo App");
         primaryStage.setScene(new Scene(root, 1200, 600));
         primaryStage.show();
+
     }
 
     public void start(String[] args) {

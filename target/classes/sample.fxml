@@ -47,7 +47,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
                      </rowConstraints>
-                     <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: url(&quot;/M2SUNAq.jpg&quot;); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <AnchorPane fx:id="backgroundAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: url(&quot;/music_icon.png&quot;); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <effect>
                            <Glow />
                         </effect>
@@ -105,7 +105,7 @@
             <content>
                <AnchorPane prefHeight="166.0" prefWidth="420.0">
                   <TextField fx:id="dialogTextField" layoutX="66.0" layoutY="68.0" prefHeight="23.0" prefWidth="227.0" />
-                  <Button fx:id="dialogButton" layoutX="248.0" layoutY="102.0" mnemonicParsing="false" onMouseClicked="#saveDialogInput" text="Save">
+                  <Button fx:id="dialogButton" layoutX="248.0" layoutY="102.0" mnemonicParsing="false" onAction="#saveDialogInput" text="Save">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
