@@ -4,6 +4,7 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 
 public class Controller {
@@ -37,6 +38,8 @@ public class Controller {
     @FXML
     private TextField dialogTextField;
 
+    @FXML
+    private GridPane dialogGridPane;
 
     //////////////////////////////////////////////////////
     // FUNCTIONS run when interacting with GUI elements //
@@ -87,9 +90,8 @@ public class Controller {
         if(recordButton.isDisabled()){
             recordButton.setDisable(false); //A should always show after file is saved
         }
-        // text input for filename
-        textInputDialog.setVisible(true);
-        textInputDialog.setDisable(false);
+        // open dialog to get user input for filename
+        setDialogVisibility(true);
     }
 
     @FXML
@@ -98,13 +100,14 @@ public class Controller {
     void saveDialogInput(MouseEvent event){
         if(dialogTextField.getLength() > 0) {
             // Screen.setTempFileName(dialogTextField.getText());
-            sound.newFile(dialogTextField.getText());
-            textInputDialog.setVisible(false);
-            textInputDialog.setDisable(true);
+            sound.newFile(dialogTextField.getText()); //name sound file
+            setDialogVisibility(false); //close dialog
+            dialogTextField.setText(""); //reset text field
         } else if(dialogTextField.getLength() == 0) {
-            // If no input is detected
+            // If no input is detected change label
             dialogLabel.setText("You must input file name to save your recording");
         } else {
+            // error code
             System.out.println("Fail occurred during request of file name by user input!");
         }
     }
@@ -123,6 +126,15 @@ public class Controller {
     void newFIleLabel(MinimSound thisSound) {
         // there should be a way of making new Labels to represent files
         // method missing. Should be made if drop down file chooser menu should be incorporated
+    }
+
+    ////////////////////////
+    // Internal functions //
+    ////////////////////////
+    void setDialogVisibility(boolean inputBool){
+        dialogGridPane.setVisible(inputBool);
+        dialogGridPane.setDisable(!inputBool);
+        System.out.println("Dialog visibility changed to" + inputBool);
     }
 
 }
