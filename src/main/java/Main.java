@@ -1,20 +1,9 @@
 import processing.core.PApplet;
-import processing.sound.*;
-
-import ddf.minim.*;
-import ddf.minim.analysis.*;
-import ddf.minim.effects.*;
-import ddf.minim.signals.*;
-import ddf.minim.spi.*;
-import ddf.minim.ugens.*;
-
-import java.io.File;
-import java.util.concurrent.TimeUnit;
 
 
 
 /* "Main" is the main class of MemoApp. All other classes are initialized through main
-*/
+ */
 
 public class Main extends PApplet {
 
