@@ -177,7 +177,7 @@ public class Controller {
     private void setDialogVisibility(boolean inputBool){ // dialogVisible = input
         dialogGridPane.setVisible(inputBool);
         dialogGridPane.setDisable(!inputBool);
-        System.out.println("Dialog visibility changed to" + inputBool);
+        System.out.println("Dialog visibility changed to " + inputBool);
     }
 
 }
