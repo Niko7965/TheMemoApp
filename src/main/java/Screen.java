@@ -5,10 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-//
 public class Screen extends Application {
-
-    private static String tempFileName;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -23,13 +20,4 @@ public class Screen extends Application {
         launch(args);
     }
 
-    String getTempFIleName(){
-        return(tempFileName);
-    }
-
-    static void setTempFileName(String inputString){
-        tempFileName = inputString;
-    }
-
 }
-
