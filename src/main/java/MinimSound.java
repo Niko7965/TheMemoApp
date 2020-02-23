@@ -52,7 +52,7 @@ public class MinimSound {
     }
 
     //Changes the output path for the Minim recorder
-    void newFile(String path){
+    void SetOutputPath(String path){
         String pathName = "./Recordings/" +path+ ".wav";
         recorder = minim.createRecorder(in,pathName);
     }
@@ -71,6 +71,17 @@ public class MinimSound {
             recorder.endRecord();
             System.out.println("Recording stopped");
         }
+    }
+
+    void deleteFile(String filename){
+        File f = new File(sketchPath(filename));
+        f.delete();
+    }
+
+    void renameFile(String filename, String newName){
+        File f1 = new File(sketchPath(filename));
+        File f2 = new File (newName);
+        f1.renameTo(f2);
     }
 
     //Takes a file path, and return a list of contents of the directory
