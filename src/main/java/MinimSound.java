@@ -19,14 +19,16 @@ import java.util.stream.Stream;
   MinimSound uses a few Java libraries (io, nio, util) to save sound files on the device */
 
 public class MinimSound {
+    //Record
     //Recording variables. Some of these are not currently used, but remain in place for possible future development
-    String folder;
-    AudioInput in;
-    AudioRecorder recorder;
+    private String folder;
+    private AudioInput in;
+    private AudioRecorder recorder;
     boolean recorded;
-    AudioOutput out;
+    //Playback
+    private AudioOutput out;
     FilePlayer player;
-    Minim minim;
+    private Minim minim;
     List recordings;
 
     //A function that returns the absolute path from a sketchpath (C:/Users/... from Java/Resources/...
@@ -109,6 +111,23 @@ public class MinimSound {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
+
+    /*
+    System.out.println("Files in folder:");
+    String[] pathnames;
+    File f = new File(path);
+    pathnames = f.list();
+    System.out.println(pathnames);
+
+    if (pathnames != null) {
+        for (String pathname : pathnames){
+            System.out.println(pathname);
+        }
+    }
+
+    */
 
 }
