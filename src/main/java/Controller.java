@@ -12,6 +12,7 @@ import java.io.IOException;
 
 public class Controller {
     // object to hold new recording
+    private boolean soundStarted = false;
     private MinimSound sound = new MinimSound();
 
     ////////////////////////////
@@ -87,7 +88,11 @@ public class Controller {
     // when "Record" button is pressed
     // record sound and make "stop recording" available
     void recordSound(MouseEvent event) {
-        sound.minimSetup();
+        if(!soundStarted) {
+            sound.minimSetup();
+        }
+        soundStarted = true;
+
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         stopButton.setDisable(!stopButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         //recordButton.setText("Pause");
