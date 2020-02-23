@@ -106,7 +106,6 @@ public class Controller {
          */
     }
 
-
     @FXML
     // not used
     void rotate(MouseEvent event) {
@@ -146,8 +145,6 @@ public class Controller {
     // save the user inputted file name from pop-up dialog
     void saveDialogInput(MouseEvent event) throws IOException {
         if(dialogTextField.getLength() > 0) {
-            // Screen.setTempFileName(dialogTextField.getText());
-
             sound.saveAs("Recordings/Temp/temp.wav", "Recordings/"+dialogTextField.getText()+".wav");
             System.out.println("FilenameChange");
             //sound.setOutputPath(dialogTextField.getText()); //name sound file
@@ -164,7 +161,7 @@ public class Controller {
     }
 
     @FXML
-    // when clicking on label, but this isn't used yet
+    // when clicking on label; NOT IN USE
     void chooseFile(MouseEvent event){
         // play or mark the saved file from the file-menu
     }
