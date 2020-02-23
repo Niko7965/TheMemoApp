@@ -120,7 +120,7 @@ public class Controller {
         stopButton.setDisable(!stopButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
-        sound.stoprecord();
+        sound.stopRecord();
         backgroundAnchorPane.setBackground(stopBackground); //show stopped-icon
     }
 
