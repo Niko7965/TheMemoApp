@@ -15,9 +15,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/*MinimSound is a class that is used to handle sound
-  MinimSound uses the "Minim" library from processing
-  MinimSound uses a few Java libraries (io, nio, util) to save sound files on the device */
+/* MinimSound is a class that is used to handle sound
+ * MinimSound uses the "Minim" library from processing
+ * MinimSound uses a few Java libraries (io, nio, util) to save sound files on the device
+ */
 
 public class MinimSound {
     //Record
