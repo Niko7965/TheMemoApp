@@ -3,6 +3,7 @@ import ddf.minim.AudioOutput;
 import ddf.minim.AudioRecorder;
 import ddf.minim.Minim;
 import ddf.minim.ugens.FilePlayer;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,13 +49,13 @@ public class MinimSound {
     void minimSetup(){
         minim = new Minim(this);
         in = minim.getLineIn(Minim.STEREO);
-        recorder = minim.createRecorder(in,"/Recordings/Untitled.wav");
+        recorder = minim.createRecorder(in,"/Recordings/Temp/temp.wav");
         folder = "./Recordings";
         out = minim.getLineOut(Minim.STEREO);
     }
 
     //Changes the output path for the Minim recorder
-    void SetOutputPath(String path){
+    void setOutputPath(String path){
         String pathName = "./Recordings/" +path+ ".wav";
         recorder = minim.createRecorder(in,pathName);
     }
@@ -80,10 +81,22 @@ public class MinimSound {
         f.delete();
     }
 
-    void renameFile(String filename, String newName){
-        File f1 = new File(sketchPath(filename));
+    void saveAs(String filename, String newName) throws IOException {
+        FileUtils.copyFile(FileUtils.getFile(filename),FileUtils.getFile(newName));
+
+        /*
+        printDir(folder);
+        File f1 = new File(filename);
         File f2 = new File (newName);
-        f1.renameTo(f2);
+        boolean b = f1.renameTo(f2);
+        if(b){
+            System.out.println("Successfully renamed file");
+        }
+        else{
+            System.out.println("No filename changed");
+        }
+
+         */
     }
 
     //Takes a file path, and return a list of contents of the directory

@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
+import java.io.IOException;
+
 
 public class Controller {
     // object to hold new recording
@@ -137,10 +139,13 @@ public class Controller {
     @FXML
     // when "Save" button in the pop-up dialog is pressed
     // save the user inputted file name from pop-up dialog
-    void saveDialogInput(MouseEvent event){
+    void saveDialogInput(MouseEvent event) throws IOException {
         if(dialogTextField.getLength() > 0) {
             // Screen.setTempFileName(dialogTextField.getText());
-            sound.newFile(dialogTextField.getText()); //name sound file
+
+            sound.saveAs("Recordings/Temp/temp.wav", "Recordings/"+dialogTextField.getText()+".wav");
+            System.out.println("FilenameChange");
+            //sound.setOutputPath(dialogTextField.getText()); //name sound file
             setDialogVisibility(false); //close dialog
             dialogTextField.setText(""); //reset text field
             backgroundAnchorPane.setBackground(musicBackground); //show standard-icon
@@ -164,7 +169,7 @@ public class Controller {
     // Functions to manipulate Labels //
     ////////////////////////////////////
     @FXML
-    void newFIleLabel(MinimSound thisSound) {
+    void newFileLabel(MinimSound thisSound) {
         // there should be a way of making new Labels to represent files
         // method missing. Should be made if drop down file chooser menu should be incorporated
     }
