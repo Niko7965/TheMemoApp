@@ -25,7 +25,7 @@ public class MinimSound {
     private String folder;
     private AudioInput in;
     private AudioRecorder recorder;
-    boolean recorded;
+
     //Playback
     private AudioOutput out;
     FilePlayer player;
@@ -81,22 +81,10 @@ public class MinimSound {
         f.delete();
     }
 
-    void saveAs(String filename, String newName) throws IOException {
-        FileUtils.copyFile(FileUtils.getFile(filename),FileUtils.getFile(newName));
+    void saveAs(String newName) throws IOException {
+        String destination = "Recordings/"+newName+".wav";
+        FileUtils.copyFile(FileUtils.getFile("Recordings/Temp/temp.wav"),FileUtils.getFile(destination));
 
-        /*
-        printDir(folder);
-        File f1 = new File(filename);
-        File f2 = new File (newName);
-        boolean b = f1.renameTo(f2);
-        if(b){
-            System.out.println("Successfully renamed file");
-        }
-        else{
-            System.out.println("No filename changed");
-        }
-
-         */
     }
 
     //Takes a file path, and return a list of contents of the directory
@@ -126,21 +114,5 @@ public class MinimSound {
         }
 
     }
-
-
-    /*
-    System.out.println("Files in folder:");
-    String[] pathnames;
-    File f = new File(path);
-    pathnames = f.list();
-    System.out.println(pathnames);
-
-    if (pathnames != null) {
-        for (String pathname : pathnames){
-            System.out.println(pathname);
-        }
-    }
-
-    */
 
 }

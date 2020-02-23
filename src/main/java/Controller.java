@@ -6,6 +6,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import oracle.jrockit.jfr.Recording;
+import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
 
@@ -143,9 +145,16 @@ public class Controller {
     @FXML
     // when "Save" button in the pop-up dialog is pressed
     // save the user inputted file name from pop-up dialog
-    void saveDialogInput(MouseEvent event) throws IOException {
+    void saveDialogInput(MouseEvent event)  {
         if(dialogTextField.getLength() > 0) {
-            sound.saveAs("Recordings/Temp/temp.wav", "Recordings/"+dialogTextField.getText()+".wav");
+
+            try {
+                sound.saveAs(dialogTextField.getText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
             System.out.println("FilenameChange");
             //sound.setOutputPath(dialogTextField.getText()); //name sound file
             setDialogVisibility(false); //close dialog
