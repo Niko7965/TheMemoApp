@@ -25,11 +25,11 @@
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="479.0" prefWidth="649.0" />
       <GridPane>
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES"/>
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="56.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="56.0" prefHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="600.0">
             <GridPane prefHeight="422.0" prefWidth="492.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
