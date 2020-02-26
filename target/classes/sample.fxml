@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane minHeight="240.0" minWidth="360.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
@@ -95,6 +96,8 @@
          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
       </rowConstraints>
+      <AnchorPane prefHeight="337.0" prefWidth="372.0" GridPane.columnSpan="3" GridPane.rowSpan="3" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000033" height="1080.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1400.0" />
       <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
          <DialogPane fx:id="textInputDialog" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="164.0" prefWidth="360.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <content>
