@@ -172,6 +172,7 @@ public class Controller {
             setDialogVisibility(false); //close dialog
             dialogTextField.setText(""); //reset text field
             backgroundAnchorPane.setBackground(musicBackground); //show standard-icon
+
         } else if(dialogTextField.getLength() == 0) {
             // If no input is detected change label
             dialogLabel.setText("You must input file name to save your recording");
@@ -210,28 +211,23 @@ public class Controller {
 
 
     //A sort of method, that can be called repeatedly from a timer. Is used to update the timerLabel.
-    TimerTask updateTimer = new TimerTask() {
+    private TimerTask updateTimer = new TimerTask() {
         //The code run by the timer task
         @Override
         public void run() {
-
             //Only update the timer if the user is recording.
             if(recording){
                 //
-                System.out.println("Time is" + getTime());
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            timeLabel.setText(getTime());
-                        }
+                System.out.println("Time is " + getTime());
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        timeLabel.setText(getTime());
+                    }
                 });
-
-            }
-            else{
+            } else {
                 recordTimer.cancel();
             }
-
-
         }
     };
 
@@ -239,7 +235,7 @@ public class Controller {
     private String getTime(){
         long recordTime = System.currentTimeMillis() - startTime;
         long recordedSecs = recordTime / 1000;
-        long recordedMins = recordedSecs/60;
+        long recordedMins = recordedSecs / 60;
         String displayMins;
         String displaySecs;
 
@@ -257,16 +253,14 @@ public class Controller {
             displayMins = String.valueOf(recordedMins);
         }
 
-        return (displayMins+":"+ displaySecs);
+        return (displayMins + ":" + displaySecs);
     }
 
     private void startTimer() throws InterruptedException {
         startTime = System.currentTimeMillis();
-        recordTimer = new Timer("recordTimer");
+        recordTimer = new Timer("newRecordTimer");
         recordTimer.scheduleAtFixedRate(updateTimer, 1000, 1000);
 
-
     }
-
 
 }

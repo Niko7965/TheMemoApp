@@ -76,15 +76,34 @@ public class MinimSound {
         }
     }
 
-    void deleteFile(String filename){
-        File f = new File(sketchPath(filename));
-        f.delete();
+    private void deleteFile(String locationToDelete){
+        File fileToDelete = new File(sketchPath(locationToDelete));
+        fileToDelete.delete();
     }
 
     void saveAs(String newName) throws IOException {
         String destination = "Recordings/"+newName+".wav";
         FileUtils.copyFile(FileUtils.getFile("Recordings/Temp/temp.wav"),FileUtils.getFile(destination));
 
+        //deleteFile("Recordings/Temp/temp.wav");
+        boolean deletedBool = false;
+        boolean newBool = false;
+        File f = new File(sketchPath("Recordings/Temp/temp.wav"));
+        try {
+            // test if file is deleted
+            deletedBool = f.delete();
+            System.out.println("temp file size: " + f.length());
+            System.out.println("File deleted: " + deletedBool);
+            // test if new Temp file can be created
+            newBool = f.createNewFile();
+            if(newBool) {
+                System.out.println("New Temp file created");
+            } else {
+                System.out.println("Temp file already exists");
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     //Takes a file path, and return a list of contents of the directory
