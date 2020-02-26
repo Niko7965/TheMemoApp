@@ -14,13 +14,13 @@ import java.util.TimerTask;
 
 
 public class Controller {
-    // object to hold new recording
-    private MinimSound sound = new MinimSound();
-    // variables to show
+    // variables to show duration of recording
     private Timer recordTimer;
     private boolean soundStarted = false;
     private boolean recording = false;
     private long startTime;
+    // object to hold new recording
+    private MinimSound sound = new MinimSound();
 
     ////////////////////////////
     // All GUI objects in use //
@@ -54,6 +54,8 @@ public class Controller {
 
     @FXML
     private GridPane dialogGridPane;
+
+    @FXML
     private Object BackgroundImage;
 
     // backgrounds made by by icon images
