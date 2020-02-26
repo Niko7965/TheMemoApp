@@ -165,6 +165,7 @@ public class Controller {
 
             System.out.println("FilenameChange");
             //sound.setOutputPath(dialogTextField.getText()); //name sound file
+            timeLabel.setText("00:00");
             setDialogVisibility(false); //close dialog
             dialogTextField.setText(""); //reset text field
             backgroundAnchorPane.setBackground(musicBackground); //show standard-icon
