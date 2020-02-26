@@ -19,6 +19,9 @@ public class Controller {
     // All GUI objects in use //
     ////////////////////////////
     @FXML
+    private Label timeLabel;
+
+    @FXML
     private AnchorPane backgroundAnchorPane;
 
     @FXML
