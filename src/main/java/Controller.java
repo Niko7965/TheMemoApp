@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
@@ -6,13 +7,21 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import oracle.jrockit.jfr.Recording;
+import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 
 public class Controller {
     // object to hold new recording
+    Timer recordTimer;
     private boolean soundStarted = false;
+    private boolean recording = false;
+    private long startTime;
     private MinimSound sound = new MinimSound();
 
     ////////////////////////////
@@ -95,7 +104,6 @@ public class Controller {
             sound.minimSetup();
         }
         soundStarted = true;
-
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         stopButton.setDisable(!stopButton.isDisabled()); // -||-
 
@@ -103,6 +111,13 @@ public class Controller {
             saveButton.setDisable(true);
         }
         sound.record(); //make recording
+        recording = true;
+        try {
+            startTimer();
+        } catch (InterruptedException e) {
+            System.out.println("Timer Error");
+            e.printStackTrace();
+        }
         backgroundAnchorPane.setBackground(playBackground); //show recording-icon
     }
 
@@ -120,6 +135,7 @@ public class Controller {
         saveButton.setDisable(!saveButton.isDisabled()); // -||-
         recordButton.setDisable(!recordButton.isDisabled()); // -||-
         sound.stopRecord();
+        recording = false;
         backgroundAnchorPane.setBackground(stopBackground); //show stopped-icon
     }
 
@@ -129,7 +145,6 @@ public class Controller {
     // also initiate the user input dialog to receive file name
     void saveRecording(MouseEvent event) {
         saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
-
         if(recordButton.isDisabled()){
             recordButton.setDisable(false); //A should always show after file is saved
         }
@@ -140,9 +155,14 @@ public class Controller {
     @FXML
     // when "Save" button in the pop-up dialog is pressed
     // save the user inputted file name from pop-up dialog
-    void saveDialogInput(MouseEvent event) throws IOException {
+    void saveDialogInput(MouseEvent event)  {
         if(dialogTextField.getLength() > 0) {
-            sound.saveAs("Recordings/Temp/temp.wav", "Recordings/" + dialogTextField.getText() + ".wav");
+            try {
+                sound.saveAs(dialogTextField.getText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             System.out.println("FilenameChange");
             //sound.setOutputPath(dialogTextField.getText()); //name sound file
             setDialogVisibility(false); //close dialog
@@ -184,5 +204,65 @@ public class Controller {
         System.out.println("Dialog visibility changed to " + inputBool);
     }
 
-}
 
+    //A sort of method, that can be called repeatedly from a timer. Is used to update the timerLabel.
+    TimerTask updateTimer = new TimerTask() {
+        //The code run by the timer task
+        @Override
+        public void run() {
+
+            //Only update the timer if the user is recording.
+            if(recording){
+                //
+                System.out.println("Time is" + getTime());
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            timeLabel.setText(getTime());
+                        }
+                });
+
+            }
+            else{
+                recordTimer.cancel();
+            }
+
+
+        }
+    };
+
+    //Time Functions
+    private String getTime(){
+        long recordTime = System.currentTimeMillis() - startTime;
+        long recordedSecs = recordTime / 1000;
+        long recordedMins = recordedSecs/60;
+        String displayMins;
+        String displaySecs;
+
+        if(recordedSecs % 60 < 10){
+            displaySecs = "0"+recordedSecs % 60;
+        }
+        else{
+            displaySecs = String.valueOf(recordedSecs % 60);
+        }
+
+        if(recordedMins< 10){
+            displayMins = "0"+recordedMins;
+        }
+        else{
+            displayMins = String.valueOf(recordedMins);
+        }
+
+        return (displayMins+":"+ displaySecs);
+    }
+
+    private void startTimer() throws InterruptedException {
+        startTime = System.currentTimeMillis();
+        recordTimer = new Timer("recordTimer");
+        recordTimer.scheduleAtFixedRate(updateTimer, 1000, 1000);
+
+
+    }
+
+
+}

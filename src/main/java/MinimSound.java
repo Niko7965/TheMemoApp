@@ -21,32 +21,32 @@ import java.util.stream.Stream;
 
 public class MinimSound {
     //Record
-    //Recording variables. Some of these are not currently used, but remain in place for possible future development
+    //Recording variables.
     private String folder;
     private AudioInput in;
     private AudioRecorder recorder;
-    boolean recorded;
-    //Playback
-    private AudioOutput out;
-    FilePlayer player;
     private Minim minim;
-    List recordings;
+
+    //Playback, unused currently, but important for future development
+    private AudioOutput out;
+    private FilePlayer player;
+    private List recordings;
 
     //A function that returns the absolute path from a sketchpath (C:/Users/... from Java/Resources/...
-    //Not currently in use, but was used as developer tool, and might be useful for future development
-    public String sketchPath( String fileName ){
+    //Is required for the Minim Library to work
+    public String sketchPath(String fileName){
         return Main.main.sketchPath(fileName);
     }
 
     //Creates a new sound input
-    //Not currently in use, but was used as developer tool, and might be useful for future development
+    //Is required for the Minim Library to work
     public InputStream createInput(String fileName ){
         return Main.main.createInput(fileName);
     }
 
     //The setup function for MinimSound
     //Defines inputs, outputs and directories for the Minim library
-    void minimSetup(){
+   void minimSetup(){
         minim = new Minim(this);
         in = minim.getLineIn(Minim.STEREO);
         recorder = minim.createRecorder(in,"/Recordings/Temp/temp.wav");
@@ -81,22 +81,10 @@ public class MinimSound {
         f.delete();
     }
 
-    void saveAs(String filename, String newName) throws IOException {
-        FileUtils.copyFile(FileUtils.getFile(filename),FileUtils.getFile(newName));
+    void saveAs(String newName) throws IOException {
+        String destination = "Recordings/"+newName+".wav";
+        FileUtils.copyFile(FileUtils.getFile("Recordings/Temp/temp.wav"),FileUtils.getFile(destination));
 
-        /*
-        printDir(folder);
-        File f1 = new File(filename);
-        File f2 = new File (newName);
-        boolean b = f1.renameTo(f2);
-        if(b){
-            System.out.println("Successfully renamed file");
-        }
-        else{
-            System.out.println("No filename changed");
-        }
-
-         */
     }
 
     //Takes a file path, and return a list of contents of the directory
@@ -124,23 +112,5 @@ public class MinimSound {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
-
-    /*
-    System.out.println("Files in folder:");
-    String[] pathnames;
-    File f = new File(path);
-    pathnames = f.list();
-    System.out.println(pathnames);
-
-    if (pathnames != null) {
-        for (String pathname : pathnames){
-            System.out.println(pathname);
-        }
-    }
-
-    */
-
 }
