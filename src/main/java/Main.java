@@ -7,15 +7,13 @@ import processing.core.PApplet;
 
 public class Main extends PApplet {
 
-
     public static Main main;
 
     public static String[] argString;
 
     //The first code run,
-    //Sets a main class for processing to use
-    //Starts the screen class
-
+    //sets a main class for processing to use
+    //starts the screen class
     public static void main(String[] args) {
         PApplet.main("Main");
         new Screen().start(args);

@@ -7,22 +7,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import oracle.jrockit.jfr.Recording;
-import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 
 public class Controller {
     // object to hold new recording
-    Timer recordTimer;
+    private MinimSound sound = new MinimSound();
+    // variables to show
+    private Timer recordTimer;
     private boolean soundStarted = false;
     private boolean recording = false;
     private long startTime;
-    private MinimSound sound = new MinimSound();
 
     ////////////////////////////
     // All GUI objects in use //
@@ -191,7 +189,7 @@ public class Controller {
     @FXML
     void newFileLabel(MinimSound thisSound) {
         // there should be a way of making new Labels to represent files
-        // method missing. Should be made if drop down file chooser menu should be incorporated
+        // method missing. Should be made if drop down file menu should be incorporated
     }
 
     ////////////////////////
@@ -207,7 +205,7 @@ public class Controller {
 
 
     //A sort of method, that can be called repeatedly from a timer. Is used to update the timerLabel.
-    TimerTask updateTimer = new TimerTask() {
+    private TimerTask updateTimer = new TimerTask() {
         //The code run by the timer task
         @Override
         public void run() {
@@ -216,19 +214,15 @@ public class Controller {
             if(recording){
                 //
                 System.out.println("Time is" + getTime());
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            timeLabel.setText(getTime());
-                        }
-                });
-
-            }
-            else{
-                recordTimer.cancel();
-            }
-
-
+                    Platform.runLater(new Runnable()
+                                      {
+                                          @Override
+                                          public void run() {
+                                              timeLabel.setText(getTime());
+                                          }
+                                      }
+                                      );
+            } else { recordTimer.cancel(); }
         }
     };
 
@@ -236,34 +230,29 @@ public class Controller {
     private String getTime(){
         long recordTime = System.currentTimeMillis() - startTime;
         long recordedSecs = recordTime / 1000;
-        long recordedMins = recordedSecs/60;
+        long recordedMins = recordedSecs / 60;
         String displayMins;
         String displaySecs;
 
         if(recordedSecs % 60 < 10){
             displaySecs = "0"+recordedSecs % 60;
-        }
-        else{
+        } else {
             displaySecs = String.valueOf(recordedSecs % 60);
         }
 
         if(recordedMins< 10){
             displayMins = "0"+recordedMins;
-        }
-        else{
+        } else {
             displayMins = String.valueOf(recordedMins);
         }
 
-        return (displayMins+":"+ displaySecs);
+        return(displayMins+":"+ displaySecs);
     }
 
     private void startTimer() throws InterruptedException {
         startTime = System.currentTimeMillis();
         recordTimer = new Timer("recordTimer");
         recordTimer.scheduleAtFixedRate(updateTimer, 1000, 1000);
-
-
     }
-
 
 }
