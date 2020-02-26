@@ -10,16 +10,22 @@ import oracle.jrockit.jfr.Recording;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 
 public class Controller {
     // object to hold new recording
     private boolean soundStarted = false;
+    private boolean recording = false;
+    private long startTime;
     private MinimSound sound = new MinimSound();
 
     ////////////////////////////
     // All GUI objects in use //
     ////////////////////////////
+    @FXML
+    private Label timeLabel;
+
     @FXML
     private AnchorPane backgroundAnchorPane;
 
@@ -102,6 +108,8 @@ public class Controller {
             saveButton.setDisable(true);
         }
         sound.record(); //make recording
+        recording = true;
+        startTimer();
         backgroundAnchorPane.setBackground(playBackground); //show recording-icon
         /* unused feature where button has two functionalities may be implemented later
          * recordButton.setText("Pause");
@@ -122,6 +130,7 @@ public class Controller {
         saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         sound.stopRecord();
+        recording = false;
         backgroundAnchorPane.setBackground(stopBackground); //show stopped-icon
     }
 
@@ -131,10 +140,6 @@ public class Controller {
     // also initiate the user input dialog to receive file name
     void saveRecording(MouseEvent event) {
         saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
-        //recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
-
-        // PopUpScreen.showNameInput(true);
-
         if(recordButton.isDisabled()){
             recordButton.setDisable(false); //A should always show after file is saved
         }
@@ -195,6 +200,29 @@ public class Controller {
         dialogGridPane.setDisable(!inputBool);
         System.out.println("Dialog visibility changed to " + inputBool);
     }
+
+
+
+
+    //Time Functions
+    private String getTime(){
+        long recordTime = System.currentTimeMillis() - startTime;
+        long recordedSecs = recordTime / 1000;
+        long recordedMins = recordedSecs/60;
+        long displaySecs = recordedSecs % 60;
+        return (recordedMins+" : "+ displaySecs);
+    }
+
+    private void startTimer() throws InterruptedException {
+        long startTime = System.currentTimeMillis();
+        while(recording){
+            timeLabel.setText(getTime());
+            TimeUnit.SECONDS.sleep(1);
+        }
+
+    }
+
+    //Time loop:
 
 }
 
