@@ -63,8 +63,8 @@ public class Controller {
 
     // backgrounds made by by icon images
     private int iconSize = 320;
-    private BackgroundImage musicIconBackgroundImage = new BackgroundImage(
-            new Image("music_icon.PNG",iconSize,iconSize,true,true),
+    private BackgroundImage micIconBackgroundImage = new BackgroundImage(
+            new Image("mic_icon.PNG",iconSize,iconSize,true,true),
             BackgroundRepeat.NO_REPEAT,
             BackgroundRepeat.NO_REPEAT,
             BackgroundPosition.CENTER,
@@ -88,7 +88,7 @@ public class Controller {
             BackgroundPosition.CENTER,
             BackgroundSize.DEFAULT);
 
-    private Background musicBackground = new Background(musicIconBackgroundImage);
+    private Background micBackground = new Background(micIconBackgroundImage);
     private Background playBackground = new Background(playIconBackgroundImage);
     public Background pauseBackground = new Background(pauseIconBackgroundImage);
     private Background stopBackground = new Background(stopIconBackgroundImage);
@@ -171,7 +171,7 @@ public class Controller {
             timeLabel.setText("00:00");
             setDialogVisibility(false); //close dialog
             dialogTextField.setText(""); //reset text field
-            backgroundAnchorPane.setBackground(musicBackground); //show standard-icon
+            backgroundAnchorPane.setBackground(micBackground); //show standard-icon
 
         } else if(dialogTextField.getLength() == 0) {
             // If no input is detected change label
