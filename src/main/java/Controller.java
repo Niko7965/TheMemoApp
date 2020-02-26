@@ -102,18 +102,20 @@ public class Controller {
         soundStarted = true;
 
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
-        stopButton.setDisable(!stopButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
-        //recordButton.setText("Pause");
+        stopButton.setDisable(!stopButton.isDisabled()); // -||-
+
         if(!saveButton.isDisabled()){
             saveButton.setDisable(true);
         }
         sound.record(); //make recording
         recording = true;
-        startTimer();
+        try {
+            startTimer();
+        } catch (InterruptedException e) {
+            System.out.println("Timer Error");
+            e.printStackTrace();
+        }
         backgroundAnchorPane.setBackground(playBackground); //show recording-icon
-        /* unused feature where button has two functionalities may be implemented later
-         * recordButton.setText("Pause");
-         */
     }
 
     @FXML
@@ -127,8 +129,8 @@ public class Controller {
     // stop recording and make "Record" available again and also make "Save" available
     void stopRecordingSound(MouseEvent event) {
         stopButton.setDisable(!stopButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
-        saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
-        recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
+        saveButton.setDisable(!saveButton.isDisabled()); // -||-
+        recordButton.setDisable(!recordButton.isDisabled()); // -||-
         sound.stopRecord();
         recording = false;
         backgroundAnchorPane.setBackground(stopBackground); //show stopped-icon
@@ -152,13 +154,13 @@ public class Controller {
     // save the user inputted file name from pop-up dialog
     void saveDialogInput(MouseEvent event)  {
         if(dialogTextField.getLength() > 0) {
-
             try {
                 sound.saveAs(dialogTextField.getText());
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
+            sound.saveAs("Recordings/Temp/temp.wav", "Recordings/" + dialogTextField.getText() + ".wav");
 
             System.out.println("FilenameChange");
             //sound.setOutputPath(dialogTextField.getText()); //name sound file
@@ -195,7 +197,7 @@ public class Controller {
     ////////////////////////
     // shows dialog box if input is true and hides it when input is false
     // dialog is also enabled and disabled accordingly
-    private void setDialogVisibility(boolean inputBool){ // dialogVisible = input
+    private void setDialogVisibility(boolean inputBool){ // visibility = input
         dialogGridPane.setVisible(inputBool);
         dialogGridPane.setDisable(!inputBool);
         System.out.println("Dialog visibility changed to " + inputBool);
@@ -225,4 +227,3 @@ public class Controller {
     //Time loop:
 
 }
-
