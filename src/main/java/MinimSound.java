@@ -21,32 +21,32 @@ import java.util.stream.Stream;
 
 public class MinimSound {
     //Record
-    //Recording variables. Some of these are not currently used, but remain in place for possible future development
+    //Recording variables.
     private String folder;
     private AudioInput in;
     private AudioRecorder recorder;
-
-    //Playback
-    private AudioOutput out;
-    FilePlayer player;
     private Minim minim;
-    List recordings;
+
+    //Playback, unused currently, but important for future development
+    private AudioOutput out;
+    private FilePlayer player;
+    private List recordings;
 
     //A function that returns the absolute path from a sketchpath (C:/Users/... from Java/Resources/...
-    //Not currently in use, but was used as developer tool, and might be useful for future development
-    public String sketchPath( String fileName ){
+    //Is required for the Minim Library to work
+    public String sketchPath(String fileName){
         return Main.main.sketchPath(fileName);
     }
 
     //Creates a new sound input
-    //Not currently in use, but was used as developer tool, and might be useful for future development
+    //Is required for the Minim Library to work
     public InputStream createInput(String fileName ){
         return Main.main.createInput(fileName);
     }
 
     //The setup function for MinimSound
     //Defines inputs, outputs and directories for the Minim library
-    void minimSetup(){
+   void minimSetup(){
         minim = new Minim(this);
         in = minim.getLineIn(Minim.STEREO);
         recorder = minim.createRecorder(in,"/Recordings/Temp/temp.wav");
@@ -112,7 +112,5 @@ public class MinimSound {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
 }
