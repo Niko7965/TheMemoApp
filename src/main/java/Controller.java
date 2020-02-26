@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
@@ -10,11 +11,14 @@ import oracle.jrockit.jfr.Recording;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 
 public class Controller {
     // object to hold new recording
+    Timer recordTimer;
     private boolean soundStarted = false;
     private boolean recording = false;
     private long startTime;
@@ -100,7 +104,6 @@ public class Controller {
             sound.minimSetup();
         }
         soundStarted = true;
-
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         stopButton.setDisable(!stopButton.isDisabled()); // -||-
 
@@ -160,8 +163,6 @@ public class Controller {
                 e.printStackTrace();
             }
 
-            sound.saveAs("Recordings/Temp/temp.wav", "Recordings/" + dialogTextField.getText() + ".wav");
-
             System.out.println("FilenameChange");
             //sound.setOutputPath(dialogTextField.getText()); //name sound file
             setDialogVisibility(false); //close dialog
@@ -204,26 +205,64 @@ public class Controller {
     }
 
 
+    //A sort of method, that can be called repeatedly from a timer. Is used to update the timerLabel.
+    TimerTask updateTimer = new TimerTask() {
+        //The code run by the timer task
+        @Override
+        public void run() {
 
+            //Only update the timer if the user is recording.
+            if(recording){
+                //
+                System.out.println("Time is" + getTime());
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            timeLabel.setText(getTime());
+                        }
+                });
+
+            }
+            else{
+                recordTimer.cancel();
+            }
+
+
+        }
+    };
 
     //Time Functions
     private String getTime(){
         long recordTime = System.currentTimeMillis() - startTime;
         long recordedSecs = recordTime / 1000;
         long recordedMins = recordedSecs/60;
-        long displaySecs = recordedSecs % 60;
-        return (recordedMins+" : "+ displaySecs);
+        String displayMins;
+        String displaySecs;
+
+        if(recordedSecs % 60 < 10){
+            displaySecs = "0"+recordedSecs % 60;
+        }
+        else{
+            displaySecs = String.valueOf(recordedSecs % 60);
+        }
+
+        if(recordedMins< 10){
+            displayMins = "0"+recordedMins;
+        }
+        else{
+            displayMins = String.valueOf(recordedMins);
+        }
+
+        return (displayMins+":"+ displaySecs);
     }
 
     private void startTimer() throws InterruptedException {
-        long startTime = System.currentTimeMillis();
-        while(recording){
-            timeLabel.setText(getTime());
-            TimeUnit.SECONDS.sleep(1);
-        }
+        startTime = System.currentTimeMillis();
+        recordTimer = new Timer("recordTimer");
+        recordTimer.scheduleAtFixedRate(updateTimer, 1000, 1000);
+
 
     }
 
-    //Time loop:
 
 }
