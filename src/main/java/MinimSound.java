@@ -32,9 +32,9 @@ public class MinimSound {
     private FilePlayer player;
     private List recordings;
 
-    //A function that returns the absolute path from a sketch path (C:/Users/... from Java/Resources/...
+    //A function that returns the absolute path from a sketchpath (C:/Users/... from Java/Resources/...
     //Is required for the Minim Library to work
-    private String sketchPath(String fileName){
+    public String sketchPath(String fileName){
         return Main.main.sketchPath(fileName);
     }
 
