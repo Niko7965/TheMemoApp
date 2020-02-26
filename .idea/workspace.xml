@@ -61,7 +61,7 @@
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="MemoApp" />
+      <module name="TheMemoApp" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
