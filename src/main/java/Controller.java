@@ -103,21 +103,24 @@ public class Controller {
         if(!soundStarted) {
             sound.minimSetup();
         }
-        soundStarted = true;
+
         recordButton.setDisable(!recordButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         stopButton.setDisable(!stopButton.isDisabled()); // -||-
 
         if(!saveButton.isDisabled()){
             saveButton.setDisable(true);
         }
+        sound.newTemp();
         sound.record(); //make recording
         recording = true;
+
         try {
             startTimer();
         } catch (InterruptedException e) {
             System.out.println("Timer Error");
             e.printStackTrace();
         }
+
         backgroundAnchorPane.setBackground(playBackground); //show recording-icon
     }
 
@@ -134,8 +137,8 @@ public class Controller {
         stopButton.setDisable(!stopButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         saveButton.setDisable(!saveButton.isDisabled()); // -||-
         recordButton.setDisable(!recordButton.isDisabled()); // -||-
-        sound.stopRecord();
         recording = false;
+        sound.stopRecord();
         backgroundAnchorPane.setBackground(stopBackground); //show stopped-icon
     }
 
@@ -162,9 +165,7 @@ public class Controller {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             System.out.println("FilenameChange");
-            //sound.setOutputPath(dialogTextField.getText()); //name sound file
             setDialogVisibility(false); //close dialog
             dialogTextField.setText(""); //reset text field
             backgroundAnchorPane.setBackground(musicBackground); //show standard-icon
@@ -213,32 +214,26 @@ public class Controller {
 
             //Only update the timer if the user is recording.
             if(recording){
-                //
-                System.out.println("Time is" + getTime());
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            timeLabel.setText(getTime());
-                        }
-                });
 
+                System.out.println("Time is: " + getTime());
+                    Platform.runLater(() -> timeLabel.setText(getTime()));
             }
             else{
                 recordTimer.cancel();
             }
-
-
         }
     };
 
     //Time Functions
     private String getTime(){
+        //Calculates time difference
         long recordTime = System.currentTimeMillis() - startTime;
         long recordedSecs = recordTime / 1000;
         long recordedMins = recordedSecs/60;
+
         String displayMins;
         String displaySecs;
-
+        //The rest below is formatting
         if(recordedSecs % 60 < 10){
             displaySecs = "0"+recordedSecs % 60;
         }
@@ -260,7 +255,6 @@ public class Controller {
         startTime = System.currentTimeMillis();
         recordTimer = new Timer("recordTimer");
         recordTimer.scheduleAtFixedRate(updateTimer, 1000, 1000);
-
 
     }
 

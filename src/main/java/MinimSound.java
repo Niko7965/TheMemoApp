@@ -26,6 +26,7 @@ public class MinimSound {
     private AudioInput in;
     private AudioRecorder recorder;
     private Minim minim;
+    private String path;
 
     //Playback, unused currently, but important for future development
     private AudioOutput out;
@@ -50,13 +51,15 @@ public class MinimSound {
         minim = new Minim(this);
         in = minim.getLineIn(Minim.STEREO);
         recorder = minim.createRecorder(in,"/Recordings/Temp/temp.wav");
+        path = "/Recordings/Temp/temp.wav";
         folder = "./Recordings";
         out = minim.getLineOut(Minim.STEREO);
     }
 
     //Changes the output path for the Minim recorder
-    void setOutputPath(String path){
-        String pathName = "./Recordings/" +path+ ".wav";
+    void newTemp(){
+        String pathName = "./Recordings/Temp/" +System.currentTimeMillis()+ ".wav";
+        path = pathName;
         recorder = minim.createRecorder(in,pathName);
     }
 
@@ -72,8 +75,11 @@ public class MinimSound {
     void stopRecord(){
         if(recorder.isRecording()){
             recorder.endRecord();
+            recorder.save();
             System.out.println("Recording stopped");
+
         }
+
     }
 
     void deleteFile(String filename){
@@ -81,9 +87,11 @@ public class MinimSound {
         f.delete();
     }
 
+
+
     void saveAs(String newName) throws IOException {
         String destination = "Recordings/"+newName+".wav";
-        FileUtils.copyFile(FileUtils.getFile("Recordings/Temp/temp.wav"),FileUtils.getFile(destination));
+        FileUtils.copyFile(FileUtils.getFile(path),FileUtils.getFile(destination));
 
     }
 
