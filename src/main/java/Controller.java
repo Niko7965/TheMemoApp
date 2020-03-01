@@ -1,14 +1,11 @@
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import oracle.jrockit.jfr.Recording;
-import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
 import java.util.Timer;
@@ -30,38 +27,22 @@ public class Controller {
     ////////////////////////////
     @FXML
     private Label timeLabel;
-
     @FXML
     private AnchorPane backgroundAnchorPane;
-
     @FXML
     private Button recordButton;
-
     @FXML
     private Button stopButton;
-
     @FXML
     private Button saveButton;
-
-    @FXML
-    private DialogPane textInputDialog;
-
-    @FXML
-    private Button dialogButton;
-
     @FXML
     private Label dialogLabel;
-
     @FXML
     private TextField dialogTextField;
-
     @FXML
     private GridPane dialogGridPane;
 
-    @FXML
-    private Object BackgroundImage;
-
-    // backgrounds made by by icon images
+    // Backgrounds made by by icon images
     private int iconSize = 320;
     private BackgroundImage micIconBackgroundImage = new BackgroundImage(
             new Image("mic_icon.PNG",iconSize,iconSize,true,true),
@@ -95,14 +76,13 @@ public class Controller {
 
 
 
-
     //////////////////////////////////////////////////////
     // FUNCTIONS run when interacting with GUI elements //
     //////////////////////////////////////////////////////
     @FXML
     // when "Record" button is pressed
     // record sound and make "stop recording" available
-    void recordSound(MouseEvent event) {
+    private void recordSound(MouseEvent event) {
         if(!soundStarted) {
             sound.minimSetup();
         }
@@ -128,15 +108,9 @@ public class Controller {
     }
 
     @FXML
-    // not used
-    void rotate(MouseEvent event) {
-
-    }
-
-    @FXML
     // when "Stop" button is pressed
     // stop recording and make "Record" available again and also make "Save" available
-    void stopRecordingSound(MouseEvent event) {
+    private void stopRecordingSound(MouseEvent event) {
         stopButton.setDisable(!stopButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         saveButton.setDisable(!saveButton.isDisabled()); // -||-
         recordButton.setDisable(!recordButton.isDisabled()); // -||-
@@ -149,7 +123,7 @@ public class Controller {
     // when "Save" button is pressed
     // save recording and make itself, "Save", unavailable
     // also initiate the user input dialog to receive file name
-    void saveRecording(MouseEvent event) {
+    private void saveRecording(MouseEvent event) {
         saveButton.setDisable(!saveButton.isDisabled()); //B=¬A therefore ¬B=A too. (negation of disable-value)
         if(recordButton.isDisabled()){
             recordButton.setDisable(false); //A should always show after file is saved
@@ -161,7 +135,7 @@ public class Controller {
     @FXML
     // when "Save" button in the pop-up dialog is pressed
     // save the user inputted file name from pop-up dialog
-    void saveDialogInput(MouseEvent event)  {
+    private void saveDialogInput(MouseEvent event)  {
         if(dialogTextField.getLength() > 0) {
             try {
                 sound.saveAs(dialogTextField.getText());
@@ -177,7 +151,7 @@ public class Controller {
 
         } else if(dialogTextField.getLength() == 0) {
             // If no input is detected change label
-            dialogLabel.setText("You must input file name to save your recording");
+            dialogLabel.setText("Please input file name to save");
         } else {
             // error code
             System.out.println("Fail occurred during request of file name by user input!");
@@ -195,7 +169,7 @@ public class Controller {
     // Functions to manipulate Labels //
     ////////////////////////////////////
     @FXML
-    void newFileLabel(MinimSound thisSound) {
+    private void newFileLabel(MinimSound thisSound) {
         // there should be a way of making new Labels to represent files
         // method missing. Should be made if drop down file chooser menu should be incorporated
     }
