@@ -212,14 +212,13 @@ public class Controller {
     }
 
 
-    //A sort of method, that can be called repeatedly from a timer. Is used to update the timerLabel.
+    //A lambda, that can be called repeatedly from a timer. Is used to update the timerLabel.
     private TimerTask updateTimer = new TimerTask() {
         //The code run by the timer task
         @Override
         public void run() {
             //Only update the timer if the user is recording.
             if(recording){
-                //
                 System.out.println("Time is " + getTime());
                 Platform.runLater(new Runnable() {
                     @Override
@@ -241,6 +240,7 @@ public class Controller {
         long recordedMins = recordedSecs / 60;
         String displayMins;
         String displaySecs;
+
         //The rest below is formatting
         if(recordedSecs % 60 < 10){
             displaySecs = "0"+recordedSecs % 60;
